@@ -1,3 +1,5 @@
+'use client'
+
 import { Input } from '../../ui'
 import { RequiredSymbol } from '../required-symbol'
 import { ErrorText } from '../error-text'
