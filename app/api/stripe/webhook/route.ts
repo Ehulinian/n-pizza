@@ -6,7 +6,7 @@ import { sendEmail } from '@/shared/lib'
 import { OrderSuccessTemplate } from '@/shared/components/shared/email-templates/order-success'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
-const webhookSecret = process.env.STRIPE_WEBHOOK_DEV_SECRET!
+const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
 
 export async function POST(req: Request) {
 	const body = await req.text()
