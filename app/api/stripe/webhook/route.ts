@@ -1,7 +1,6 @@
 import Stripe from 'stripe'
 import { prisma } from '@/prisma/prisma-client'
 import { OrderStatus } from '@prisma/client'
-import { headers } from 'next/headers'
 import { sendEmail } from '@/shared/lib'
 import { OrderSuccessTemplate } from '@/shared/components/shared/email-templates/order-success'
 
@@ -10,7 +9,11 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
 
 export async function POST(req: Request) {
 	const body = await req.text()
-	const sig = headers().get('stripe-signature')!
+	const sig = req.headers.get('stripe-signature')
+
+	if (!sig) {
+		return new Response('Missing signature', { status: 401 })
+	}
 
 	let event: Stripe.Event
 
