@@ -47,7 +47,7 @@ export async function createOrder(data: CheckoutFormValues) {
 		const order = await prisma.order.create({
 			data: {
 				token: cartToken,
-				fullName: data.firstName + ' ' + data.lastName,
+				fullName: `${data.firstName} ${data.lastName}`,
 				email: data.email,
 				phone: data.phone,
 				address: data.address,
@@ -73,48 +73,29 @@ export async function createOrder(data: CheckoutFormValues) {
 			},
 		})
 
-		const paymentData = await createPayment({
+		const session = await createPayment({
 			amount: order.totalAmount,
-			description: 'Оплата заказа #' + order.id,
+			description: `Оплата заказа #${order.id}`,
 			orderId: order.id,
 		})
 
-		if (!paymentData) {
-			throw new Error('Payment error')
-		}
-
-		await prisma.order.update({
-			where: {
-				id: order.id,
-			},
-			data: {
-				paymentId: paymentData.id,
-			},
-		})
-
-		if (!paymentData.url) {
-			throw new Error('Stripe session url not found')
-		}
-
-		const paymentUrl = paymentData.url
-
-		if (!paymentUrl) {
-			throw new Error('Payment URL not created')
+		if (!session.url) {
+			throw new Error('Stripe session URL not found')
 		}
 
 		await sendEmail(
 			data.email,
-			'Next Pizza - Order Confirmation',
+			'Next Pizza - Payment required',
 			PayOrderTemplate({
 				orderId: order.id,
 				totalAmount: order.totalAmount,
-				paymentUrl,
+				paymentUrl: session.url,
 			}),
 		)
 
-		return paymentUrl
+		return session.url
 	} catch (error) {
-		console.log('[CreateOrder] - Server error', error)
+		console.log('[CreateOrder] error', error)
 		throw error
 	}
 }
