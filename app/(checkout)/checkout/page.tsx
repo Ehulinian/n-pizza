@@ -1,25 +1,32 @@
 'use client'
 
-import { Container, Title } from '@/shared/components/shared'
-import { CheckoutSideBar } from '@/shared/components/shared/checkout-side-bar'
-import { useCart } from '@/shared/hooks'
 import { FormProvider, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { CheckoutCart } from '@/shared/components/shared/checkout/checkout-cart'
-import { CheckoutPersonalForm } from '@/shared/components/shared/checkout'
-import { CheckoutAdressForm } from '@/shared/components/shared/checkout/checkout-adress-form'
+
+import { useCart } from '@/shared/hooks'
+import { createOrder } from '@/app/actions'
+import toast from 'react-hot-toast'
+import React from 'react'
+import { useSession } from 'next-auth/react'
+import { Api } from '@/shared/services/api-client'
 import {
 	checkoutFormSchema,
 	CheckoutFormValues,
 } from '@/shared/components/shared/checkout/checkout-form-schema'
-import { createOrder } from '@/app/actions'
-import toast from 'react-hot-toast'
-import React from 'react'
+import {
+	CheckoutAdressForm,
+	CheckoutCart,
+	CheckoutPersonalForm,
+	CheckoutSideBar,
+	Container,
+	Title,
+} from '@/shared/components/shared'
 
 export default function CheckoutPage() {
 	const [submitting, setSubmitting] = React.useState(false)
 	const { totalAmount, updateItemQuantity, items, removeCartItem, loading } =
 		useCart()
+	const { data: session } = useSession()
 
 	const form = useForm<CheckoutFormValues>({
 		resolver: zodResolver(checkoutFormSchema),
@@ -33,14 +40,20 @@ export default function CheckoutPage() {
 		},
 	})
 
-	const onClickCountButton = (
-		id: number,
-		quantity: number,
-		type: 'plus' | 'minus',
-	) => {
-		const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1
-		updateItemQuantity(id, newQuantity)
-	}
+	React.useEffect(() => {
+		async function fetchUserInfo() {
+			const data = await Api.auth.getMe()
+			const [firstName, lastName] = data.fullName.split(' ')
+
+			form.setValue('firstName', firstName)
+			form.setValue('lastName', lastName)
+			form.setValue('email', data.email)
+		}
+
+		if (session) {
+			fetchUserInfo()
+		}
+	}, [session])
 
 	const onSubmit = async (data: CheckoutFormValues) => {
 		try {
@@ -55,7 +68,6 @@ export default function CheckoutPage() {
 			if (url) {
 				location.href = url
 			}
-			
 		} catch (err) {
 			console.log(err)
 			setSubmitting(false)
@@ -63,6 +75,15 @@ export default function CheckoutPage() {
 				icon: '❌',
 			})
 		}
+	}
+
+	const onClickCountButton = (
+		id: number,
+		quantity: number,
+		type: 'plus' | 'minus',
+	) => {
+		const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1
+		updateItemQuantity(id, newQuantity)
 	}
 
 	return (
@@ -77,10 +98,10 @@ export default function CheckoutPage() {
 					<div className="flex gap-10">
 						<div className="flex flex-col gap-10 flex-1 mb-20">
 							<CheckoutCart
-								loading={loading}
 								onClickCountButton={onClickCountButton}
 								removeCartItem={removeCartItem}
 								items={items}
+								loading={loading}
 							/>
 
 							<CheckoutPersonalForm
@@ -91,6 +112,7 @@ export default function CheckoutPage() {
 								className={loading ? 'opacity-40 pointer-events-none' : ''}
 							/>
 						</div>
+
 						<div className="w-[450px]">
 							<CheckoutSideBar
 								totalAmount={totalAmount}
