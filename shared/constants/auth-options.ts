@@ -6,6 +6,8 @@ import { prisma } from '@/prisma/prisma-client'
 import { compare, hashSync } from 'bcrypt'
 import { UserRole } from '@prisma/client'
 
+export const runtime = 'nodejs'
+
 export const authOptions: AuthOptions = {
 	providers: [
 		GoogleProvider({
