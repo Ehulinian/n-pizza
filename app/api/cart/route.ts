@@ -6,10 +6,21 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(req: NextRequest) {
 	try {
-		const token = req.cookies.get('cartToken')?.value
+		let token = req.cookies.get('cartToken')?.value
 
 		if (!token) {
-			return NextResponse.json({ items: [] })
+			token = crypto.randomUUID()
+
+			const res = NextResponse.json({ items: [] })
+
+			res.cookies.set('cartToken', token, {
+				httpOnly: true,
+				sameSite: 'lax',
+				secure: true,
+				path: '/',
+			})
+
+			return res
 		}
 
 		const userCart = await prisma.cart.findFirst({
