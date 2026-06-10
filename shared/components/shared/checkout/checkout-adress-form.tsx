@@ -16,7 +16,7 @@ export const CheckoutAdressForm: React.FC<CheckoutAdressProps> = ({
 }) => {
 	const { control } = useFormContext()
 	return (
-		<WhiteBlock title="3. Адрес доставки" className={className}>
+		<WhiteBlock title="3. Delivery address" className={className}>
 			<div className="flex flex-col gap-5">
 				<Controller
 					control={control}
@@ -34,7 +34,7 @@ export const CheckoutAdressForm: React.FC<CheckoutAdressProps> = ({
 					name="comment"
 					rows={5}
 					className="text-base"
-					placeholder="Коментарий к заказу"
+					placeholder="Comments"
 				/>
 			</div>
 		</WhiteBlock>

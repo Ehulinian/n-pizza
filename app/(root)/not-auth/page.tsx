@@ -4,8 +4,8 @@ export default function UnauthorizedPage() {
 	return (
 		<div className="flex flex-col items-center justify-center mt-40">
 			<InfoBlock
-				title="Доступ запрещён"
-				text="Данную страницу могут просматривать только авторизованные пользователи"
+				title="Access denied"
+				text="This page can only be viewed by authorized users."
 				imageUrl="/assets/images/lock.png"
 			/>
 		</div>

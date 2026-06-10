@@ -4,7 +4,6 @@ import React from 'react'
 import { FilterChecboxProps, FilterCheckbox } from './filter-checkbox'
 import { Input, Skeleton } from '../ui'
 
-
 type Item = FilterChecboxProps
 
 interface Props {
@@ -26,7 +25,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 	items,
 	defaultItems,
 	limit = 5,
-	searchInputPlaceholder = 'Поиск...',
+	searchInputPlaceholder = 'Search...',
 	className,
 	loading,
 	onClickCheckbox,
@@ -96,7 +95,7 @@ export const CheckboxFiltersGroup: React.FC<Props> = ({
 						onClick={() => setShowAll(!showAll)}
 						className="text-primary mt-3"
 					>
-						{showAll ? 'Скрыть' : '+ Показать все'}
+						{showAll ? 'Hide' : '+ Show all'}
 					</button>
 				</div>
 			)}

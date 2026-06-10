@@ -7,12 +7,12 @@ interface Props {
 export const VerificationUserTemplate: React.FC<Props> = ({ code }) => (
 	<div>
 		<p>
-			Код подтверждения: <h2>{code}</h2>
+			Verification code: <h2>{code}</h2>
 		</p>
 
 		<p>
 			<a href={`${process.env.NEXTAUTH_URL}/api/auth/verify?code=${code}`}>
-				Подтвердить регистрацию
+				Confirm registration
 			</a>
 		</p>
 	</div>

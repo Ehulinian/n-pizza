@@ -39,11 +39,11 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 				password: data.password,
 			})
 
-			toast.error('Данные обновлены 📝', {
+			toast.error('User data updated 📝', {
 				icon: '✅',
 			})
 		} catch (error) {
-			return toast.error('Ошибка при обновлении данных', {
+			return toast.error('Error updating data', {
 				icon: '❌',
 			})
 		}
@@ -58,7 +58,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 	return (
 		<Container>
 			<Title
-				text={`Личные данные | #${data.id}`}
+				text={`Personal information | #${data.id}`}
 				size="md"
 				className="font-bold"
 			/>
@@ -74,13 +74,13 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 					<FormInput
 						type="password"
 						name="password"
-						label="Новый пароль"
+						label="New password"
 						required
 					/>
 					<FormInput
 						type="password"
 						name="confirmPassword"
-						label="Повторите пароль"
+						label="Confirm password"
 						required
 					/>
 
@@ -89,7 +89,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 						className="text-base mt-10"
 						type="submit"
 					>
-						Сохранить
+						Save
 					</Button>
 
 					<Button
@@ -99,7 +99,7 @@ export const ProfileForm: React.FC<ProfileFormProps> = ({ data }) => {
 						className="text-base"
 						type="button"
 					>
-						Выйти
+						Log out
 					</Button>
 				</form>
 			</FormProvider>

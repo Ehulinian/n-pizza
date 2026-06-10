@@ -61,9 +61,12 @@ export default function CheckoutPage() {
 
 			const url = await createOrder(data)
 
-			toast.error('Заказ успешно оформлен! 📝 Переход на оплату... ', {
-				icon: '✅',
-			})
+			toast.error(
+				'Your order has been successfully placed! 📝 Proceed to payment... ',
+				{
+					icon: '✅',
+				},
+			)
 
 			if (url) {
 				location.href = url
@@ -71,7 +74,7 @@ export default function CheckoutPage() {
 		} catch (err) {
 			console.log(err)
 			setSubmitting(false)
-			toast.error('Не удалось создать заказ', {
+			toast.error('Failed to create order', {
 				icon: '❌',
 			})
 		}
@@ -88,10 +91,7 @@ export default function CheckoutPage() {
 
 	return (
 		<Container className="mt-10">
-			<Title
-				text="Оформление заказа"
-				className="font-extrabold mb-8 text-[36px]"
-			/>
+			<Title text="Checkout" className="font-extrabold mb-8 text-[36px]" />
 
 			<FormProvider {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)}>

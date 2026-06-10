@@ -35,7 +35,7 @@ export const InfoBlock: React.FC<Props> = ({
 					<Link href="/">
 						<Button variant="outline" className="gap-2">
 							<ArrowLeft />
-							На главную
+							Home
 						</Button>
 					</Link>
 					<a href="">
@@ -43,7 +43,7 @@ export const InfoBlock: React.FC<Props> = ({
 							variant="outline"
 							className="text-gray-500 border-gray-400 hover:bg-gray-50"
 						>
-							Обновить
+							Update
 						</Button>
 					</a>
 				</div>

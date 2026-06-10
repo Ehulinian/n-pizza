@@ -33,7 +33,7 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
 				password: data.password,
 			})
 
-			toast.success('Регистрация успешна 📝. Подтвердите свою почту', {
+			toast.success('Registration successful 📝. Confirm your email', {
 				icon: '✅',
 			})
 
@@ -41,7 +41,7 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
 		} catch (error: any) {
 			console.log('REGISTER ERROR:', error)
 
-			toast.error(error?.message || 'Ошибка регистрации', { icon: '❌' })
+			toast.error(error?.message || 'Registration failed', { icon: '❌' })
 		}
 	}
 
@@ -52,21 +52,21 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
 				onSubmit={form.handleSubmit(onSubmit)}
 			>
 				<FormInput name="email" label="E-Mail" required />
-				<FormInput name="fullName" label="Полное имя" required />
-				<FormInput name="password" label="Пароль" type="password" required />
+				<FormInput name="fullName" label="Full Name" required />
+				<FormInput name="password" label="Password" type="password" required />
 				<FormInput
 					name="confirmPassword"
-					label="Подтвердите пароль"
+					label="Confirm Password"
 					type="password"
 					required
-				/>
+				/>s
 
 				<Button
 					loading={form.formState.isSubmitting}
 					className="h-12 text-base"
 					type="submit"
 				>
-					Зарегистрироваться
+					Register
 				</Button>
 			</form>
 		</FormProvider>

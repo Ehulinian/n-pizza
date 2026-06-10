@@ -37,12 +37,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({
 
 				<div className="mt-4 flex items-center justify-between">
 					<span className="text-[20px]">
-						от <b>{price}</b>
+						from <b>{price}</b>
 					</span>
 
 					<Button variant="secondary">
 						<Plus size={20} className="mr-1" />
-						Добавить
+						Add
 					</Button>
 				</div>
 			</Link>

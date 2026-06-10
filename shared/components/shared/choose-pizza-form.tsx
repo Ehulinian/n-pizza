@@ -100,7 +100,7 @@ export const ChoosePizzaForm: React.FC<Props> = ({
 					loading={loading}
 					className="h-[55px] px-10 text-base rounded-[18px] w-full mt-10"
 				>
-					Добавить в корзину за {totalPrice} ₽
+					Add to cart for {totalPrice} €
 				</Button>
 			</div>
 		</div>

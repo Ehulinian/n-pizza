@@ -32,11 +32,11 @@ export const Header: React.FC<Props> = ({
 		let toastMessage = ''
 
 		if (searchParams.has('paid')) {
-			toastMessage = 'Заказ успешно оплачен! Информация отправлена на почту.'
+			toastMessage = 'Your order has been paid successfully! Information has been sent to your email..'
 		}
 
 		if (searchParams.has('verified')) {
-			toastMessage = 'Почта успешно подтверждена!'
+			toastMessage = 'Email successfully confirmed!'
 		}
 
 		if (toastMessage) {
@@ -58,7 +58,7 @@ export const Header: React.FC<Props> = ({
 						<div>
 							<h1 className="text-2xl uppercase font-black">Next Pizza</h1>
 							<p className="text-sm text-gray-400 leading-3">
-								вкусней уже некуда
+								it couldn't be more delicious
 							</p>
 						</div>
 					</div>

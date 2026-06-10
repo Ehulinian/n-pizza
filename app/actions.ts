@@ -145,10 +145,10 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 		if (user) {
 			if (!user.verified) {
-				throw new Error('Почта не подтверждена')
+				throw new Error('Email not confirmed')
 			}
 
-			throw new Error('Пользователь уже существует')
+			throw new Error('User already exists')
 		}
 
 		const createdUser = await prisma.user.create({
@@ -170,7 +170,7 @@ export async function registerUser(body: Prisma.UserCreateInput) {
 
 		await sendEmail(
 			createdUser.email,
-			'Next Pizza / 📝 Подтверждение регистрации',
+			'Next Pizza / 📝 Registration confirmation',
 			VerificationUserTemplate({
 				code,
 			}),

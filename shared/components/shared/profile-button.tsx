@@ -24,13 +24,13 @@ export const ProfileButton: React.FC<Props> = ({
 					className="flex items-center gap-1"
 				>
 					<User size={16} />
-					Войти
+					Sign in
 				</Button>
 			) : (
 				<Link href="/profile">
 					<Button variant="secondary" className="flex items-center gap-2">
 						<CircleUser size={18} />
-						Профиль
+						Profile
 					</Button>
 				</Link>
 			)}

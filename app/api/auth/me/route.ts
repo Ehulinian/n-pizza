@@ -11,7 +11,7 @@ export async function GET(req: any, res: any) {
 
 		if (!user) {
 			return NextResponse.json(
-				{ message: 'Вы не авторизованы' },
+				{ message: 'You are not logged in' },
 				{ status: 401 },
 			)
 		}

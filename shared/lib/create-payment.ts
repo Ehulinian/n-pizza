@@ -28,7 +28,7 @@ export async function createPayment(details: any) {
 			orderId: details.orderId,
 		},
 
-		success_url: `${process.env.NEXTAUTH_URL}/`,
+		success_url: `${process.env.NEXT_PUBLIC_APP_URL}/?paid=true`,
 	})
 
 	return session

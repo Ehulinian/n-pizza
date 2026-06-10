@@ -59,7 +59,7 @@ export async function POST(req: Request) {
 
 		await sendEmail(
 			order.email,
-			'Next Pizza / Ваш заказ успешно оформлен 🎉',
+			'Next Pizza / Your order has been successfully completed 🎉',
 			OrderSuccessTemplate({
 				orderId: order.id,
 				items: JSON.parse(order.items as string),
