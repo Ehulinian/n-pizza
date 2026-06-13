@@ -28,8 +28,7 @@ export const SortPopup: React.FC<SortPopupProps> = ({ className }) => {
 	useQueryFilters(filters)
 
 	const currentSort =
-		sortVariants.find(item => item.value === filters.sortBy)?.name ??
-		'Popularity'
+		sortVariants.find(item => item.value === filters.sortBy)?.name ?? 'Price'
 
 	return (
 		<div className={cn('relative', className)}>
