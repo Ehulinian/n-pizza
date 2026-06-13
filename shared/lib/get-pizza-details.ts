@@ -16,7 +16,7 @@ export const getPizzaDetails = (
 		ingredients,
 		selectedIngredients,
 	)
-	const textDetaills = `${size} см, ${mapPizzaType[type]} пицца`
+	const textDetaills = `${size} cm, ${mapPizzaType[type]} пицца`
 
 	return { totalPrice, textDetaills }
 }

@@ -59,7 +59,7 @@ export const RegisterForm: React.FC<Props> = ({ onClose, onClickLogin }) => {
 					label="Confirm Password"
 					type="password"
 					required
-				/>s
+				/>
 
 				<Button
 					loading={form.formState.isSubmitting}

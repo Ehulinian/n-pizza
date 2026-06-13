@@ -55,7 +55,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onClose }) => {
 			>
 				<div className="flex justify-between items-center">
 					<div className="mr-2">
-						<Title text="Вход в аккаунт" size="md" className="font-bold" />
+						<Title text="Login" size="md" className="font-bold" />
 						<p className="text-gray-400">
 							Enter your email to log in to your account
 						</p>
