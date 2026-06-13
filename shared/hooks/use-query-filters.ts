@@ -14,6 +14,7 @@ export const useQueryFilters = (filters: Filters) => {
 				pizzaTypes: Array.from(filters.pizzaTypes),
 				sizes: Array.from(filters.sizes),
 				ingredients: Array.from(filters.selectedIngredients),
+				sortBy: filters.sortBy,
 			}
 
 			const query = qs.stringify(params, {
@@ -28,5 +29,11 @@ export const useQueryFilters = (filters: Filters) => {
 		}
 
 		isMounted.current = true
-	}, [filters])
+	}, [
+		filters.sortBy,
+		filters.prices,
+		filters.pizzaTypes,
+		filters.sizes,
+		filters.selectedIngredients,
+	])
 }
